@@ -1,0 +1,17 @@
+%
+%Chapter 4
+%
+\chapter{CSE Architecture}
+\section{CSE Hardware Overview}
+The CSE is comprised of two gigabit-speed input cards, a mainboard powered by an FPGA, eight DACs connected to the FPGA, eight amplifier cards (one for each DAC) and a pair of interface boards \cite{chris}. The input interface cards have HDMI I/O ports and connect to the NUCPC or external scene generator to receive input. Each interface card is connected to the main FPGA via FPGA Mezzanine Card (FMC) slots. The FPGA is host to a MicroBlaze soft processor and uses its eight remaining FMC slots for DACs. Each DAC outputs to an amplifier card, creating the analog driving inputs for the RIIC. All amplified signals are routed out through the interface board to be connected to the RIIC through ribbon cables. 
+\section{Datapath}
+Once the scene generator provides video input, the HDMI cards decode and send the video stream to the FPGA. Since the FPGA uses a soft processor, it can be interfaced with in C to control registers \cite{chris}. The processed data is then distributed amongst the eight DAC slots in accordance with the packets defined by PDP. Each DAC card holds two dual-channel DAC components for a total of 32 channels. Once the digital input has been converted to analog, the amplifier cards boost the output and send it through the interface boards. Each interface board has power input from a PSU and power output for the DACs and Amps, and also contain boost components to convert the 2.5V amplified output to 5V for the RIIC to read. \par
+\begin{figure}[!htb]
+	\includegraphics*[width = 15cm]{cse_datapath}
+	\centering
+	\caption{CSE Architecture Overview}
+	\centering
+\end{figure}
+\section{Hardware Revisions \& System Upgrade Plans}
+After many years of development, the CSE reached a level of maturity to be considered a cohesive product (internally dubbed Nessie). Due to ever-increasing requirements from customers and breakthroughs in the technology, the group has moved to target a multi-CSE platform capable of each driving a quadrant of an array (now known as Nessie2). By increasing the number of output machines, frame rates can be quadrupled and resolution can be doubled \cite{chris}. To compare, the previous system (CSE + SLEDS) would effectively be one quarter of this entire setup. The main challenge facing the system architecture is proper synchronization, as this is vital to ensure all quadrants are being controlled in the same time domain.\par
+Another major change coming to the system architecture is the placement of all analog systems onto the Dewar enclosure rather than inside the CSE. This means the CSE will only handle digital video conversion, and send these values to amplifiers directly on the Dewar. The overall datapath will remain the same with a scene generator interfacing with the FPGA through an SFP+ interface. The FPGA will distribute video data amongst the DACs and then routed outside to the Dewar to be amplified and read. Plans for the Nessie2 amps based on lessons learned from the Nessie1 amps will be discussed later.

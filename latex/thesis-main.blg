@@ -1,0 +1,67 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: thesis-main.aux
+A level-1 auxiliary file: thesis-tap.aux
+A level-1 auxiliary file: chap1.aux
+A level-1 auxiliary file: chap2.aux
+A level-1 auxiliary file: chap3.aux
+A level-1 auxiliary file: chap4.aux
+A level-1 auxiliary file: chap5.aux
+A level-1 auxiliary file: chap6.aux
+A level-1 auxiliary file: chap7.aux
+The style file: plain.bst
+A level-1 auxiliary file: appA.aux
+A level-1 auxiliary file: appB.aux
+Database file #1: refs.bib
+Warning--I'm ignoring pdp_ieee's extra "author" field
+--line 95 of file refs.bib
+Warning--I'm ignoring pdp_ieee's extra "author" field
+--line 97 of file refs.bib
+Warning--I'm ignoring pdp_ieee's extra "author" field
+--line 99 of file refs.bib
+Warning--I'm ignoring pdp_ieee's extra "author" field
+--line 101 of file refs.bib
+Warning--I'm ignoring pdp_ieee's extra "author" field
+--line 103 of file refs.bib
+You've used 7 entries,
+            2118 wiz_defined-function locations,
+            541 strings with 5297 characters,
+and the built_in function-call counts, 1739 in all, are:
+= -- 169
+> -- 101
+< -- 0
++ -- 42
+- -- 34
+* -- 104
+:= -- 349
+add.period$ -- 21
+call.type$ -- 7
+change.case$ -- 36
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 62
+empty$ -- 106
+format.name$ -- 34
+if$ -- 330
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 2
+newline$ -- 38
+num.names$ -- 14
+pop$ -- 29
+preamble$ -- 1
+purify$ -- 31
+quote$ -- 0
+skip$ -- 46
+stack$ -- 0
+substring$ -- 36
+swap$ -- 4
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 28
+warning$ -- 0
+while$ -- 14
+width$ -- 8
+write$ -- 79
+(There were 5 warnings)
