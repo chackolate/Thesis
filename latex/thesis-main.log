@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  18 APR 2022 22:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.18)  19 APR 2022 20:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -163,31 +163,62 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen143
 \Gin@req@width=\dimen144
+) (c:/texlive/2022/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+) (c:/texlive/2022/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2022/03/01 v3.6b Customizing captions (AR)
+ (c:/texlive/2022/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
+\caption@tempdima=\dimen145
+\captionmargin=\dimen146
+\caption@leftmargin=\dimen147
+\caption@rightmargin=\dimen148
+\caption@width=\dimen149
+\caption@indent=\dimen150
+\caption@parindent=\dimen151
+\caption@hangindent=\dimen152
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\vspace *{1.5\baselineskip } \setbox 0=\hbox {{\bfseries #1:\enspace }} \setbox \@tempboxa \hbox {{\bfseries #1:\enspace }#2} \ifdim \wd \@tempboxa >\hsize \hangindent \wd 0\unhcopy 0#2\par \else \hbox to\hsize {\hfil \box \@tempboxa \hfil }\vspace *{\baselineskip } \fi  on input line 1176.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count270
+\c@continuedfloat=\count271
+Package caption Info: hyperref package is loaded.
+Package caption Info: hypcap package is loaded.
+) (c:/texlive/2022/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2022/01/07 v1.5 Sub-captions (AR)
+\c@subfigure=\count272
+\c@subtable=\count273
 ) (c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count270
+\l__color_backend_stack_int=\count274
 \l__pdf_internal_box=\box50
-) (./thesis-main.aux (./thesis-tap.aux) (./chap1.aux) (./chap2.aux) (./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./appA.aux) (./appB.aux))
+) (./thesis-main.aux (./thesis-tap.aux) (./chap1.aux) (./chap2.aux) (./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./chap7.aux) (./appA.aux) (./appB.aux))
 \openout1 = `thesis-main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
  (c:/texlive/2022/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
  (c:/texlive/2022/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -195,7 +226,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 )
-Package hyperref Info: Link coloring ON on input line 13.
+Package hyperref Info: Link coloring ON on input line 16.
  (c:/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (c:/texlive/2022/texmf-dist/tex/latex/refcount/refcount.sty
@@ -203,27 +234,27 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (c:/texlive/2022/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count271
+\c@section@level=\count275
 )
-LaTeX Info: Redefining \ref on input line 13.
-LaTeX Info: Redefining \pageref on input line 13.
-LaTeX Info: Redefining \nameref on input line 13.
+LaTeX Info: Redefining \ref on input line 16.
+LaTeX Info: Redefining \pageref on input line 16.
+LaTeX Info: Redefining \nameref on input line 16.
  (./thesis-main.out) (./thesis-main.out)
 \@outlinefile=\write3
 \openout3 = `thesis-main.out'.
 
  (c:/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count272
-\scratchdimen=\dimen145
+\scratchcounter=\count276
+\scratchdimen=\dimen153
 \scratchbox=\box51
-\nofMPsegments=\count273
-\nofMParguments=\count274
+\nofMPsegments=\count277
+\nofMParguments=\count278
 \everyMPshowfont=\toks17
-\MPscratchCnt=\count275
-\MPscratchDim=\dimen146
-\MPnumerator=\count276
-\makeMPintoPDFobject=\count277
+\MPscratchCnt=\count279
+\MPscratchDim=\dimen154
+\MPnumerator=\count280
+\makeMPintoPDFobject=\count281
 \everyMPtoPDFconversion=\toks18
 ) (c:/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -231,6 +262,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (c:/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 \openout2 = `thesis-tap.aux'.
 
  (./thesis-tap.tex [1
@@ -261,27 +294,24 @@ Package hyperref Warning: bookmark level for unknown prefacesection defaults to 
 
  [6
 
-] (./thesis-main.lof)
+] (./thesis-main.lof [7
+
+])
 \tf@lof=\write6
 \openout6 = `thesis-main.lof'.
 
- [7
-
-] [8
+ [8] [9
 
 ])
 \openout2 = `chap1.aux'.
 
  (./chap1.tex
 Chapter 1.
-<./images/irsp_block_diagram.png, id=201, 534.19576pt x 205.36725pt>
+<./images/irsp_block_diagram.png, id=279, 534.19576pt x 205.36725pt>
 File: ./images/irsp_block_diagram.png Graphic file (type png)
 <use ./images/irsp_block_diagram.png>
 Package pdftex.def Info: ./images/irsp_block_diagram.png  used on input line 12.
 (pdftex.def)             Requested size: 284.52756pt x 109.3831pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
@@ -302,7 +332,7 @@ l.21 ...istently stay within a certain range. \par
 
  (./chap2.tex
 Chapter 2.
-<./images/system_overview.png, id=222, 525.162pt x 302.3295pt>
+<./images/system_overview.png, id=300, 525.162pt x 302.3295pt>
 File: ./images/system_overview.png Graphic file (type png)
 <use ./images/system_overview.png>
 Package pdftex.def Info: ./images/system_overview.png  used on input line 7.
@@ -313,63 +343,49 @@ Package pdftex.def Info: ./images/system_overview.png  used on input line 7.
 
 
  <./images/system_overview.png>]
-<./images/timeline1.png, id=232, 430.60875pt x 178.266pt>
+<./images/timeline1.png, id=311, 430.60875pt x 178.266pt>
 File: ./images/timeline1.png Graphic file (type png)
 <use ./images/timeline1.png>
 Package pdftex.def Info: ./images/timeline1.png  used on input line 19.
 (pdftex.def)             Requested size: 284.52756pt x 117.79192pt.
-<./images/timeline2.png, id=234, 431.81325pt x 158.39175pt>
+<./images/timeline2.png, id=313, 431.81325pt x 158.39175pt>
 File: ./images/timeline2.png Graphic file (type png)
 <use ./images/timeline2.png>
 Package pdftex.def Info: ./images/timeline2.png  used on input line 25.
 (pdftex.def)             Requested size: 284.52756pt x 104.3721pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./images/riic_cmos.png, id=236, 263.18324pt x 233.07076pt>
+<./images/riic_cmos.png, id=315, 263.18324pt x 233.07076pt>
 File: ./images/riic_cmos.png Graphic file (type png)
 <use ./images/riic_cmos.png>
 Package pdftex.def Info: ./images/riic_cmos.png  used on input line 34.
 (pdftex.def)             Requested size: 227.62204pt x 201.58563pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5 <./images/timeline1.png>] [6 <./images/timeline2.png> <./images/riic_cmos.png>]
-<./images/scene_gen_example.png, id=257, 287.8755pt x 181.27725pt>
+ [5 <./images/timeline1.png> <./images/timeline2.png>] [6 <./images/riic_cmos.png>]
+<./images/scene_gen_example.png, id=336, 287.8755pt x 181.27725pt>
 File: ./images/scene_gen_example.png Graphic file (type png)
 <use ./images/scene_gen_example.png>
 Package pdftex.def Info: ./images/scene_gen_example.png  used on input line 49.
 (pdftex.def)             Requested size: 426.79134pt x 268.78125pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 ) [7] [8 <./images/scene_gen_example.png>]
 \openout2 = `chap3.aux'.
 
  (./chap3.tex
 Chapter 3.
-<./images/display_protocol.png, id=269, 283.65974pt x 239.6955pt>
+<./images/display_protocol.png, id=348, 283.65974pt x 239.6955pt>
 File: ./images/display_protocol.png Graphic file (type png)
 <use ./images/display_protocol.png>
 Package pdftex.def Info: ./images/display_protocol.png  used on input line 10.
 (pdftex.def)             Requested size: 284.52756pt x 240.43004pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [9
 
 
 
 
 ] [10 <./images/display_protocol.png>]
-<./images/pdp_table.png, id=281, 498.06075pt x 108.405pt>
+<./images/pdp_table.png, id=361, 498.06075pt x 108.405pt>
 File: ./images/pdp_table.png Graphic file (type png)
 <use ./images/pdp_table.png>
 Package pdftex.def Info: ./images/pdp_table.png  used on input line 19.
 (pdftex.def)             Requested size: 284.52756pt x 61.93208pt.
-<./images/pdp_backwards_compatibility.png, id=282, 487.8225pt x 451.08525pt>
+<./images/pdp_backwards_compatibility.png, id=362, 487.8225pt x 451.08525pt>
 File: ./images/pdp_backwards_compatibility.png Graphic file (type png)
 <use ./images/pdp_backwards_compatibility.png>
 Package pdftex.def Info: ./images/pdp_backwards_compatibility.png  used on input line 26.
@@ -379,59 +395,125 @@ Package pdftex.def Info: ./images/pdp_backwards_compatibility.png  used on input
 
  (./chap4.tex
 Chapter 4.
-<./images/cse_datapath.png, id=295, 461.92575pt x 158.39175pt>
+<./images/cse_datapath.png, id=374, 461.92575pt x 158.39175pt>
 File: ./images/cse_datapath.png Graphic file (type png)
 <use ./images/cse_datapath.png>
 Package pdftex.def Info: ./images/cse_datapath.png  used on input line 10.
 (pdftex.def)             Requested size: 426.79134pt x 146.34813pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) [13
+[13
 
 
 
 
-] [14 <./images/cse_datapath.png>]
+]) [14 <./images/cse_datapath.png>]
 \openout2 = `chap5.aux'.
 
  (./chap5.tex
 Chapter 5.
-<./images/analog_stages.png, id=308, 391.4625pt x 159.59625pt>
+<./images/analog_stages.png, id=387, 391.4625pt x 159.59625pt>
 File: ./images/analog_stages.png Graphic file (type png)
 <use ./images/analog_stages.png>
 Package pdftex.def Info: ./images/analog_stages.png  used on input line 8.
 (pdftex.def)             Requested size: 391.46153pt x 159.59584pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./images/amp_prototype.png, id=311, 441.44925pt x 278.2395pt>
-File: ./images/amp_prototype.png Graphic file (type png)
-<use ./images/amp_prototype.png>
-Package pdftex.def Info: ./images/amp_prototype.png  used on input line 15.
-(pdftex.def)             Requested size: 426.79134pt x 269.00465pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./images/amp_final.png, id=313, 960.58875pt x 615.80063pt>
-File: ./images/amp_final.png Graphic file (type png)
-<use ./images/amp_final.png>
-Package pdftex.def Info: ./images/amp_final.png  used on input line 21.
-(pdftex.def)             Requested size: 426.79134pt x 273.60287pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [15
 
 
 
 
-] [16 <./images/analog_stages.png>]) [17 <./images/amp_prototype.png>] [18 <./images/amp_final.png>]
+]
+<./images/error_band.png, id=394, 481.8pt x 270.25969pt>
+File: ./images/error_band.png Graphic file (type png)
+<use ./images/error_band.png>
+Package pdftex.def Info: ./images/error_band.png  used on input line 19.
+(pdftex.def)             Requested size: 426.79134pt x 239.40868pt.
+ [16 <./images/analog_stages.png>] [17 <./images/error_band.png>]
+<./images/amp_prototype.png, id=413, 441.44925pt x 278.2395pt>
+File: ./images/amp_prototype.png Graphic file (type png)
+<use ./images/amp_prototype.png>
+Package pdftex.def Info: ./images/amp_prototype.png  used on input line 38.
+(pdftex.def)             Requested size: 426.79134pt x 269.00465pt.
+<./images/amp_final.png, id=415, 960.58875pt x 615.80063pt>
+File: ./images/amp_final.png Graphic file (type png)
+<use ./images/amp_final.png>
+Package pdftex.def Info: ./images/amp_final.png  used on input line 44.
+(pdftex.def)             Requested size: 426.79134pt x 273.60287pt.
+) [18 <./images/amp_prototype.png>] [19 <./images/amp_final.png>]
 \openout2 = `chap6.aux'.
 
  (./chap6.tex
 Chapter 6.
-) [19
+<./images/amp_power_rework.png, id=426, 889.82437pt x 392.96812pt>
+File: ./images/amp_power_rework.png Graphic file (type png)
+<use ./images/amp_power_rework.png>
+Package pdftex.def Info: ./images/amp_power_rework.png  used on input line 9.
+(pdftex.def)             Requested size: 426.79134pt x 188.47864pt.
+<./images/reworked_power_rails.jpg, id=428, 1204.5pt x 903.375pt>
+File: ./images/reworked_power_rails.jpg Graphic file (type jpg)
+<use ./images/reworked_power_rails.jpg>
+Package pdftex.def Info: ./images/reworked_power_rails.jpg  used on input line 13.
+(pdftex.def)             Requested size: 426.79134pt x 320.10075pt.
+[20
+
+
+
+
+] [21 <./images/amp_power_rework.png> <./images/reworked_power_rails.jpg>]
+<./images/amp_components_rework.png, id=439, 371.13657pt x 475.7775pt>
+File: ./images/amp_components_rework.png Graphic file (type png)
+<use ./images/amp_components_rework.png>
+Package pdftex.def Info: ./images/amp_components_rework.png  used on input line 20.
+(pdftex.def)             Requested size: 256.0748pt x 328.27956pt.
+ [22 <./images/amp_components_rework.png>]
+<./images/amp_rework_continuity.png, id=447, 1117.92656pt x 721.19438pt>
+File: ./images/amp_rework_continuity.png Graphic file (type png)
+<use ./images/amp_rework_continuity.png>
+Package pdftex.def Info: ./images/amp_rework_continuity.png  used on input line 29.
+(pdftex.def)             Requested size: 341.43306pt x 220.26659pt.
+<./images/amp_rework_test_components.png, id=448, 1196.21906pt x 773.89125pt>
+File: ./images/amp_rework_test_components.png Graphic file (type png)
+<use ./images/amp_rework_test_components.png>
+Package pdftex.def Info: ./images/amp_rework_test_components.png  used on input line 35.
+(pdftex.def)             Requested size: 341.43306pt x 220.89194pt.
+<./images/amp_testing_setup.png, id=449, 560.0925pt x 621.82312pt>
+File: ./images/amp_testing_setup.png Graphic file (type png)
+<use ./images/amp_testing_setup.png>
+Package pdftex.def Info: ./images/amp_testing_setup.png  used on input line 43.
+(pdftex.def)             Requested size: 220.4237pt x 244.7208pt.
+ [23 <./images/amp_rework_continuity.png>]
+<./images/amp_functiongen_settings.png, id=455, 555.57562pt x 776.14969pt>
+File: ./images/amp_functiongen_settings.png Graphic file (type png)
+<use ./images/amp_functiongen_settings.png>
+Package pdftex.def Info: ./images/amp_functiongen_settings.png  used on input line 51.
+(pdftex.def)             Requested size: 189.56116pt x 264.823pt.
+<./images/amp_functiongen_connection.png, id=456, 556.32843pt x 657.95813pt>
+File: ./images/amp_functiongen_connection.png Graphic file (type png)
+<use ./images/amp_functiongen_connection.png>
+Package pdftex.def Info: ./images/amp_functiongen_connection.png  used on input line 58.
+(pdftex.def)             Requested size: 220.4237pt x 260.68877pt.
+<./images/amp_powersupply.png, id=457, 557.83406pt x 712.91344pt>
+File: ./images/amp_powersupply.png Graphic file (type png)
+<use ./images/amp_powersupply.png>
+Package pdftex.def Info: ./images/amp_powersupply.png  used on input line 69.
+(pdftex.def)             Requested size: 352.67928pt x 450.73694pt.
+ [24 <./images/amp_rework_test_components.png>]
+
+LaTeX Warning: Text page 25 contains only floats.
+
+
+Overfull \vbox (3.5087pt too high) has occurred while \output is active []
+
+ [25 <./images/amp_testing_setup.png> <./images/amp_functiongen_settings.png> <./images/amp_functiongen_connection.png>]
+<./images/amp_scope_output.png, id=472, 677.53125pt x 1204.5pt>
+File: ./images/amp_scope_output.png Graphic file (type png)
+<use ./images/amp_scope_output.png>
+Package pdftex.def Info: ./images/amp_scope_output.png  used on input line 76.
+(pdftex.def)             Requested size: 220.4237pt x 391.86221pt.
+ [26 <./images/amp_powersupply.png>]) [27 <./images/amp_scope_output.png>] [28]
+\openout2 = `chap7.aux'.
+
+ (./chap7.tex
+Chapter 7.
+) [29
 
 
 
@@ -442,7 +524,7 @@ Bibliography.
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 1.
 
-) [20
+) [30
 
 
 
@@ -454,7 +536,7 @@ Appendix A.
 
 Package hyperref Warning: bookmark level for unknown appendix defaults to 0.
 
-) [21
+) [31
 
 
 ]
@@ -462,23 +544,23 @@ Package hyperref Warning: bookmark level for unknown appendix defaults to 0.
 
 
 No file appB.tex.
-(./thesis-main.aux (./thesis-tap.aux) (./chap1.aux) (./chap2.aux) (./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./appA.aux) (./appB.aux))
+(./thesis-main.aux (./thesis-tap.aux) (./chap1.aux) (./chap2.aux) (./chap3.aux) (./chap4.aux) (./chap5.aux) (./chap6.aux) (./chap7.aux) (./appA.aux) (./appB.aux))
 Package rerunfilecheck Info: File `thesis-main.out' has not changed.
-(rerunfilecheck)             Checksum: D766D4A48C977740AC643F7D1A12280F;3885.
+(rerunfilecheck)             Checksum: 266F04D898763230E0FF1620196E3EB5;5960.
  ) 
 Here is how much of TeX's memory you used:
- 8891 strings out of 478238
- 143476 string characters out of 5847939
- 428716 words of memory out of 5000000
- 26883 multiletter control sequences out of 15000+600000
- 473284 words of font info for 41 fonts, out of 8000000 for 9000
+ 10499 strings out of 478238
+ 176696 string characters out of 5847939
+ 453932 words of memory out of 5000000
+ 28429 multiletter control sequences out of 15000+600000
+ 473584 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,7n,74p,1294b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on thesis-main.pdf (29 pages, 2390822 bytes).
+ 71i,9n,74p,1342b,520s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on thesis-main.pdf (40 pages, 11994516 bytes).
 PDF statistics:
- 408 PDF objects out of 1000 (max. 8388607)
- 330 compressed objects within 4 object streams
- 78 named destinations out of 1000 (max. 500000)
- 322 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 577 PDF objects out of 1000 (max. 8388607)
+ 459 compressed objects within 5 object streams
+ 109 named destinations out of 1000 (max. 500000)
+ 489 words of extra memory for PDF output out of 10000 (max. 10000000)
 

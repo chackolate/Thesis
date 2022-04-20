@@ -45,7 +45,7 @@ The RIIC/LED hybrid is driven by a close-support electronics system, or CSE. Whi
 \section{Scene Generation and NUCPC}
 The final ingredient necessary in the IRSP chain is the Scene Generator. While scene generation technology is far beyond the scope of my work, a general overview is necessary to understand the system. A scene generator is to the projector what a media player is to a television. Most of these scene generators are proprietary black boxes, documented by the creators to be sold to end users \cite{chris} Scene generators can communicate over nearly any physical interface, but the standards must be agreed upon between the manufacturer and user. A common display protocol is DVI, as it is fairly well documented and easy to understand. HDMI is another possible choice, but it is a more complex and less openly documented standard. \par
 To generate a scene, a GPU is usually necessary to create images and transmit them over the chosen display protocol. The generator will use frames created on the GPU to send over to the IRSP. The next step is called "Non-Uniformity Correction," which is the process of analyzing predetermined output from the IRSP to determine radiance properties of each pixel. Pixel data is placed into a table used by the scene projector and used to accomodate for irregularities in the LEDs. These irregularites are nonlinear which is why they require analysis and writeback rather than simple algorithmic correction. Once the NUC process is complete, the desired images can be projected onto the display device. \par
-\begin{figure}[h]
+\begin{figure}[!htb]
 \includegraphics*[width=15cm]{scene_gen_example} 
 \centering
 \caption{Example scene generator in IR system}
