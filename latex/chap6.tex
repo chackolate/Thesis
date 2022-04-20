@@ -4,7 +4,7 @@
 \chapter{First Iteration of Amplifier Testing}
 The first version of the test setup and procedure was not well documented or maintained. Due to hardware changes that were too costly to warrant a complete re-fabrication, every amp card had to first be electrically reworked. The post-rework test was a simple continuity and resistance check with a multimeter to make sure all new connections were stable. Amps were then hooked up to a function generator and power supply using jumper wires from their connectors. Input and output were viewed on an oscilloscope to ensure proper amplification. While this was supposed to be a sufficient emulation of their requirements in the system, the entire procedure was loosely documented and not well-enforced enough to ensure long term reproducability and reliability.
 \section{Electrical Rework}
-One of the first tasks I was given upon entering the group was to help rework each amp. The first issue was that the amplifier power rails (+15V/-5V) were not connected by default. Each amplifier's power rails had to be soldered to the power output using jumper wires. This first step already provided too much room for error, as jumper wires for power distribution would not necessarily be a better choice than simply integrating power lines into the PCB. Adding a person's hand solder in between increased the risks of cold solders or accidental shorts which are completely unacceptable for power pins. \par 
+One of the first tasks I was given upon entering the group was to help rework each amp. The first issue was that the amplifier power rails (+15V/-5V) were not connected by default. Each amplifier's power rails had to be soldered to the power output using jumper wires. This first step already provided too much room for error, as jumper wires for power distribution would not necessarily be a better choice than simply integrating power lines into the PCB. Adding a person's hand solder in between increased the risks of cold solders or accidental shorts which are completely unacceptable for power pins. \par
 \begin{figure}[!htb]
 	\includegraphics*[width=15cm]{amp_power_rework}
 	\centering
@@ -37,7 +37,7 @@ The first stage of the electrical test consisted of the electrical checks mentio
 	\caption{Official documentation for checking replaced components}
 	\centering
 \end{figure}
-The next testing stage involved hooking up instruments to simulate the type of load the amp card would have to support. This entire part of the procedure was the least well documented or understood and slowed down the validation process quite a bit. Simple breakout boards were hand-soldered for the amp connectors. Inputs were on the bottom connector and plugged into a function generator. Outputs were on the top connector and included pins for power connections (+15/-5) as well as output to the oscilloscope. 
+The next testing stage involved hooking up instruments to simulate the type of load the amp card would have to support. This entire part of the procedure was the least well documented or understood and slowed down the validation process quite a bit. Simple breakout boards were hand-soldered for the amp connectors. Inputs were on the bottom connector and plugged into a function generator. Outputs were on the top connector and included pins for power connections (+15/-5) as well as output to the oscilloscope.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.5\textwidth]{amp_testing_setup}
@@ -70,7 +70,7 @@ Setting up the power rails was a little bit less involved. The user only needed 
 	\caption{Official reference image for the amp power supply}
 \end{figure}
 \subsection{Measuring Output}
-As mentioned before, output would be measured on an oscilloscope. Amplitude of input and output could be easily compared by human eyes and the next channel would be connected. This was a slow process that involved manyally re-attaching input and output alligator clips. If gain or offset needed to be tweaked, the tester was to turn their respective potentiometers and observe output. The move to 10 ohm potentiometers greatly decreased their effect on the circuit at all and ended up being more of a nuisance than a useful control signal. 
+As mentioned before, output would be measured on an oscilloscope. Amplitude of input and output could be easily compared by human eyes and the next channel would be connected. This was a slow process that involved manyally re-attaching input and output alligator clips. If gain or offset needed to be tweaked, the tester was to turn their respective potentiometers and observe output. The move to 10 ohm potentiometers greatly decreased their effect on the circuit at all and ended up being more of a nuisance than a useful control signal.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics*[width=0.5\textwidth]{amp_scope_output}

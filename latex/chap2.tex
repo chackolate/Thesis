@@ -6,34 +6,34 @@ Using a combination of digital commands and analog signals users can precisely c
 \begin {figure}[h]
 \includegraphics*[width=10cm]{system_overview}
 \centering
-\caption {SLEDS IRSP Overview}
+\caption {SLEDS IRSP Overview \cite{chris}}
 \centering
 \end {figure}
 
 
 \section{SLEDS Array}
-As mentioned before, infrared projection requires high-speed analog signals and full user control. The LED array itself is hybridized to a Read-In Integrated Circuit (RIIC), a 10V chip which is digitally instructed by a close-support unit. This hybridized unit in its temperature-controlled enclosure is referred to as the Dewar. The first iteration of this LED array named SLED (Superlattice Light-Emitting Diode System) was constructed in 2008 with a resolution of 68 x 68 pixels. In this early stage, no driver had yet been developed to control the RIIC. \cite{chris}\par 
+As mentioned before, infrared projection requires high-speed analog signals and full user control. The LED array itself is hybridized to a Read-In Integrated Circuit (RIIC), a 10V chip which is digitally instructed by a close-support unit. This hybridized unit in its temperature-controlled enclosure is referred to as the Dewar. The first iteration of this LED array named SLED (Superlattice Light-Emitting Diode System) was constructed in 2008 with a resolution of 68 x 68 pixels. In this early stage, no driver had yet been developed to control the RIIC. \cite{chris}\par
 To drive such a complex analog device, specialized electronics and communication are required to turn human commands into infrared signals. The first drive system for the SLED array was developed in 2011 and helped lay the groundwork for the next iteration of SLEDS, consisting of a 512x512 display and 48 micrometer pitch size.\cite{chris} \par
 Further versions of SLEDS were created over the years to fulfill different requirements. TCSA (Two-Color SLEDS Array) was developed in 2016 and capable of driving the LEDs at two separate wavelength bands. NSLEDS (N3 Superlattice LED System) was also developed around this time. This array was capable of driving a 1024x1024 display for the first time. The next advancement, HDILED (High-Definition Infrared LED) was the first 2048x2048 display in the world when it was finished. \par
 \begin {figure}[h]
 \includegraphics*[width=10cm]{timeline1}
 \centering
-\caption {SLEDS Timeline}
+\caption {SLEDS Timeline \cite{chris}}
 \centering
 \end {figure}
 \begin {figure}[h]
 \includegraphics*[width=10cm]{timeline2}
 \centering
-\caption {SLEDS Timeline, Part 2}
+\caption {SLEDS Timeline, Part 2 \cite{chris}}
 \centering
 \end {figure}
 
 \section{RIIC Overview}
-The RIIC is a 10 volt IC that is hybridized with an array of IRLEDs to directly drive them using CMOS logic. A dual-circuit system allows the array to display at different dynamic ranges, a "weak gear" and "strong gear". 
+The RIIC is a 10 volt IC that is hybridized with an array of IRLEDs to directly drive them using CMOS logic. A dual-circuit system allows the array to display at different dynamic ranges, a "weak gear" and "strong gear".
 \begin {figure} [h]
 \includegraphics*[width = 8cm]{riic_cmos}
 \centering
-\caption {Single Pixel RIIC Schematic}
+\caption {Single Pixel RIIC Schematic \cite{miguel}}
 \centering
 \end {figure}
 Each pixel is driven by a strong/weak pair of NMOS transistors, which do not take up as much space as PMOS and allow for greater resolution as a result. \par
@@ -46,9 +46,9 @@ The RIIC/LED hybrid is driven by a close-support electronics system, or CSE. Whi
 The final ingredient necessary in the IRSP chain is the Scene Generator. While scene generation technology is far beyond the scope of my work, a general overview is necessary to understand the system. A scene generator is to the projector what a media player is to a television. Most of these scene generators are proprietary black boxes, documented by the creators to be sold to end users \cite{chris} Scene generators can communicate over nearly any physical interface, but the standards must be agreed upon between the manufacturer and user. A common display protocol is DVI, as it is fairly well documented and easy to understand. HDMI is another possible choice, but it is a more complex and less openly documented standard. \par
 To generate a scene, a GPU is usually necessary to create images and transmit them over the chosen display protocol. The generator will use frames created on the GPU to send over to the IRSP. The next step is called "Non-Uniformity Correction," which is the process of analyzing predetermined output from the IRSP to determine radiance properties of each pixel. Pixel data is placed into a table used by the scene projector and used to accomodate for irregularities in the LEDs. These irregularites are nonlinear which is why they require analysis and writeback rather than simple algorithmic correction. Once the NUC process is complete, the desired images can be projected onto the display device. \par
 \begin{figure}[!htb]
-\includegraphics*[width=15cm]{scene_gen_example} 
-\centering
-\caption{Example scene generator in IR system}
-\centering
+	\includegraphics*[width=15cm]{scene_gen_example}
+	\centering
+	\caption{Example scene generator in IR system \cite{chris}}
+	\centering
 \end{figure}
 Since our research group did not have access to a proprietary scene generator, they developed a pseudo-scene projector using what was dubbed a Non-Uniformity Correction PC (NUCPC). This NUCPC is connected to the CSE through HDMI, and image data is generated by an Nvidia graphics card\cite{chris}.

@@ -9,12 +9,12 @@ Infrared imaging and detection is used in various industries and services around
 A system must be "statically" and "dynamically" calibrated with an accurate infrared source. A static calibration only requires scientific test equipment to measure radiance. Dynamic calibration is much more involved and requires a throrough understanding of the system in question. To dynamically test, the system is placed under more realistic and changing conditions, such as having to react appropriately to moving objects or images. A common solution for this need is the Infrared Scene Projector (IRSP) which can be used to project infrared images and video to test a desired device. \par
 IRSPs display realtime IR scenes that simulate true IR signals for their targets. Since infrared depends on physical information (temperature), simulating this as a signal requires specialized hardware. This hardware is used to turn commands from the users into analog display signals as well as read feedback from the display device and adjust its own parameters accordingly. This "hardware-in-the-loop" approach can allow a system to accomodate for various physical effects or issues within the display. Since infrared displays are analog devices, they cannot be precisely analyzed without some sort of readback and processing to view output. A typical system design is shown below. \par
 \begin{figure}[!htb]
-\includegraphics[width=10cm]{irsp_block_diagram}
-\centering
-\caption{General IRSP architecture}
-\centering
+	\includegraphics[width=10cm]{irsp_block_diagram}
+	\centering
+	\caption{General IRSP architecture}
+	\centering
 \end{figure}
-Testing is one of the most important aspects of any system design, as it is the bottleneck for how many reliable systems can be built \& validated. This work consists of a new approach to manually test the high-speed analog amplifier circuits within the system, as well as considerations \& redesigns for the next generation of these devices. 
+Testing is one of the most important aspects of any system design, as it is the bottleneck for how many reliable systems can be built \& validated. This work consists of a new approach to manually test the high-speed analog amplifier circuits within the system, as well as considerations \& redesigns for the next generation of these devices.
 
 \section {Motivation}
 IRSPs can be characterized by multiple factors, of which two of the most important are frame rate and output temperature range. Frame rate can be described as the number of discrete outputs from the display device per second. The frame rate is directly tied to the rise time of individual pixels, which is fully dependent on the display architecture and physical properties. The temperature range represents different "colors" or ranges of IR light that the projector can display. An ideal device has both high refresh rate and high max temperature to overcome the challenges of temperature-based projection. \cite{marks} \par

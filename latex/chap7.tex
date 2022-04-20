@@ -3,7 +3,7 @@
 %
 \chapter{Development of a Formal Testing Procedure}
 \section{Initial considerations}
-The new procedure was to be a direct response to the previous one. Based on complaints and difficulties from all who had to use the setup, we compiled a list of the biggest concerns and focused the procedure design around them. These included:
+The new procedure was desgined as a direct response to the previous one. Based on complaints and difficulties from all who had to use the setup, we compiled a list of the biggest concerns and focused the procedure design around them. These included:
 \begin{itemize}
 	\item Manually changing input/output channels was slow and introduced too many steps
 	\item Input \& output were connected through a flimsy probe clip
@@ -12,3 +12,57 @@ The new procedure was to be a direct response to the previous one. Based on comp
 	\item No data collection for comparison between cards
 	\item No standards or documentation for gain/offset potentiometer tweaks
 \end{itemize}
+\section{Design Choices}
+The first readily apparent issue lay in the fact that there was a great deal of manual setup being performed by testers which was not ideal for long-term or large-scale testing. Amp cards were delivered in relatively small batches and had to be reworked and tested as they came. Having to search for a procedure that was hard to understand was not a good solution. I opted to use Python drivers communicating over the two serial specifications (USB serial and VX11 over Ethernet) to automate the input generation and output measurement. By having direct software access to the wave being generated and the data collection, users were in control of a closed loop from beginning to end. The remainder of the issues remained in the lack of hardware support for testing. Input and output locations were unclear and pin placement was only known to those who created the boards, unless testers wanted to open the PCB files and check themselves. By designing a pair of new PCBs to solve this issue, the test station had a clear set of instructions and devices to measure and capture data as was needed.
+
+\section{Software Control}
+\subsection{pySerial Overview}
+PySerial is a simple Python library to build and push serial commands over a variety of protocols. This library allows programmers to script serial access and build their own commands to be used for any device they require. For this application, I needed to build commands for a function generator. Other members of the group had previously automated this device and were able to provide documentation on the serial commands necessary. The benefit of a simple serial protocol was that it required no proprietary software and could be modified or extended for other devices. Initiating communication with a serial device is simple with pySerial as the programmer can simply can all serial ports and view device properties. In this specific application the serial device was the only one connected to the host computer, which allowed the device detection to be quite straightforward:\par
+\begin{lstlisting}
+	ports = list(serial.tools.list_ports.comports())
+	for port, desc, hwid in sorted(ports):
+		print("{}: {} [{}]".format(port, desc, hwid))
+	for p in ports:
+		print("USB Serial: {}".format(p.description))
+		if "USB-SERIAL" in p.description:
+				print("Found the FeelTech AWG")
+				awg = feeltech_awg.FeelTechAWG(p[0])
+	assert awg is not None, "No AWG device found"
+\end{lstlisting}
+To understand the process of communicating with this device I traced example commands to their lowest levels. To command the device to do anything, requests first had to be packaged into a recognizable prefix. To generate a prefix, parameters must be packaged in a particular order: \par
+\begin{lstlisting}
+	assert rw in range(2), "R/W value for prefix must be 0 (read) or 1 (write)"
+	prefix_rw = "W" if rw == 1 else "R"
+	assert channel in (1, 2), "Invalid channel, must be set to 1 (main) or 2 (auxilary)."
+	prefix_channel = "M" if channel == 1 else "F"
+	valid_modifiers = ("W", "F", "A", "O", "D", "P", "N")
+	assert modifier in valid_modifiers, "Invalid cmd modifier (%s), must be in %s"%(modifier, valid_modifiers)
+	return prefix_rw + prefix_channel + modifier
+\end{lstlisting}
+This command prefix is then concatenated with a desired parameter based on the function being controlled. Turning on an output channel, for example, takes in an output flag and attaches it to the command prefix:
+\begin{lstlisting}
+	"""
+	output:  int -> 0 to turn channel off, 1 to turn channel on
+	"""
+	cmd = _generate_cmd_prefix(1, channel, "N") + str(output)
+\end{lstlisting}
+The command is now ready to be sent to the device. Using pySerial functions for read/write operations, the code is simple:
+\begin{lstlisting}
+	self.device.flushInput()
+	self.device.write((cmd_str + "\n").encode())
+	self.device.flush()
+\end{lstlisting}
+The straightforward nature of serial communications made this easy to debug and test. The function generator only needed to perform a few tasks (turn channels on/off, set waveform parameters) the scope of my research into its functionality was limited. I believe, however, that this establishes a good base for future testing development. Many other instruments use specifications such as VISA which may be a better choice in the future.
+
+\subsection{VXI11 Overview}
+
+
+\section{Input Stage}
+\subsection{Function Generation}
+To implement a Python layer for the function generator I opted to use a FeelTech FY6900 Arbitrary Waveform Generator.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics*[]{awg}
+	\caption{FeelTech FY6900}
+\end{figure}
+This was a relatively cheap function generator that fulfilled the tasks we needed to accomplish. With up to 60MHz sine wave output, this device was more than enough to test the capabilities of the amplifiers. The DAC input the amps were designed to process were at frequencies far below this.

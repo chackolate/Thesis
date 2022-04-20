@@ -12,44 +12,106 @@
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\definecolor{bluecode}{RGB}{46,219,233}
+\definecolor{backgroundcode}{RGB}{38,35,53}
+\definecolor{pinkcode}{RGB}{234,116,194}
+\definecolor{redcode}{RGB}{224,63,73}
+\definecolor{greycode}{RGB}{187,187,179}
+\definecolor{commentcode}{RGB}{132,139,189}
+\definecolor{whitecode}{RGB}{255,255,255}
+\definecolor{orangecode}{RGB}{241,139,57}
+\definecolor{yellowcode}{RGB}{254,187,63}
+
+\lstdefinestyle{new}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstdefinestyle{vscode}{
+	backgroundcolor=\color{backgroundcode},   
+	commentstyle=\color{commentcode},
+	keywordstyle=\color{bluecode},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{orangecode},
+	basicstyle=\ttfamily\color{pinkcode}\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{
+	style=vscode,
+	xleftmargin=0.05\textwidth,
+	xrightmargin=0.05\textwidth,
+	breaklines=true,
+	language=python,
+	numbers=left
+}
                 
 \begin{document}
 \include{thesis-tap}
-                   % This file (thesis-tap.tex) contains the Title
-                   % and Approval Page information for a master's thesis.
+% This file (thesis-tap.tex) contains the Title
+% and Approval Page information for a master's thesis.
 
 \include{chap1}    % This file (chap1.tex) contains the text
-                   % for Chapter 1.
-                   
+% for Chapter 1.
+
 \include{chap2}    % This file (chap2.tex) contains the text
-                   % for Chapter 2.
+% for Chapter 2.
 \include{chap3}
 \include{chap4}
 \include{chap5}
 \include{chap6}
 \include{chap7}
 % \include{ref}      % This file (ref.tex) contains the text
-                   % for the references.
-                   
+% for the references.
+
 %\include{bib}      % This file (bib.tex) contains the text
-                   % for a bibliography.
-                                      
+% for a bibliography.
+
 %\include{bibtex}	 % This file (bibtex.tex) contains the text
-                   % for a bibliography if using BibTeX with
-                   % sample.bib
-                                      
+% for a bibliography if using BibTeX with
+% sample.bib
+
 %\include{app}      % This file (app.tex) contains the text
-                   % for one Appendix. 
-                   
+% for one Appendix. 
+
 \bibliography{refs} % Entries are in the refs.bib file
 
 \bibliographystyle{plain} % We choose the "plain" reference style
 
 \include{appA}     % This file (appA.tex) contains the text
-                   % for Appendix A. 
-                   
+% for Appendix A. 
+
 \include{appB}     % This file (appB.tex) contains the text
-                   % for Appendix B.   
-       
+% for Appendix B.   
+
 
 \end{document}
