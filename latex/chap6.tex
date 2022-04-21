@@ -1,7 +1,7 @@
 %
 %Chapter 6
 %
-\chapter{First Iteration of Amplifier Testing}
+\chapter{Previous Iteration of Amplifier Testing}
 The first version of the test setup and procedure was not well documented or maintained. Due to hardware changes that were too costly to warrant a complete re-fabrication, every amp card had to first be electrically reworked. The post-rework test was a simple continuity and resistance check with a multimeter to make sure all new connections were stable. Amps were then hooked up to a function generator and power supply using jumper wires from their connectors. Input and output were viewed on an oscilloscope to ensure proper amplification. While this was supposed to be a sufficient emulation of their requirements in the system, the entire procedure was loosely documented and not well-enforced enough to ensure long term reproducability and reliability.
 \section{Electrical Rework}
 One of the first tasks I was given upon entering the group was to help rework each amp. The first issue was that the amplifier power rails (+15V/-5V) were not connected by default. Each amplifier's power rails had to be soldered to the power output using jumper wires. This first step already provided too much room for error, as jumper wires for power distribution would not necessarily be a better choice than simply integrating power lines into the PCB. Adding a person's hand solder in between increased the risks of cold solders or accidental shorts which are completely unacceptable for power pins. \par

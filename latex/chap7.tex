@@ -112,19 +112,38 @@ The input side of the board was fairly simple to draw and lay out. One of the am
 	\caption{Terminating resistor for the N-terminal of the DAC output.}
 \end{figure}
 Grounding the differential input was an acceptable decision for the test setup. Only the P-lines of the signal would be processed by the circuit at all, so they were routed together and joined to a single BNC input in the test board.
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=\textwidth]{amp_bottom_schematic.png}
-	\caption{Input Test board schematic for joining P-inputs and grounding N-inputs}
-\end{figure}
 The layout followed shortly and included a ground plane to maximize signal integrity. With such a limited number of relevant pins on the input side of the amp card, designing the test board was not an issue. \par
+\subsection{Input Conclusion}
+This section of the test setup resulted in a far simpler procedure. Having to only connect one output through a stable connection and clearly labeled board eliminated all possible confusion for testers. INSERT PICTURE OF BOARD HERE
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{amp_bottom_layout.png}
 	\caption{Input Test board layout}
 \end{figure}
-\subsection{Input Conclusion}
-This section of the test setup resulted in a far simpler procedure. Having to only connect one output through a stable connection and clearly labeled board eliminated all possible confusion for testers. INSERT PICTURE OF BOARD HERE
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{amp_bottom_schematic.png}
+	\caption{Input Test board schematic for joining P-inputs and grounding N-inputs}
+\end{figure}
 
 \section{Output Stage}
 The output of the amp card required the testers to be able to view all output channels at once as well as collect and plot the oscilloscope's data. This once again required a mix of software and hardware tools to accomplish.
+\subsection{Top (Output) PCB}
+Before any data could be routed to the oscilloscope we needed to develop a control system for the top connector of the amp card. This connector housed a number of vital pins including power rail input and amplifier output. In the system, this connector would be attached to the interface board and transport signals through the ribbon cables. To appropriately test the functionality of all amp cards, users had to be able to fulfill a number of requirements:
+\begin{itemize}
+	\item Ensure power was being properly delivered to both amplifiers
+	\item Have the ability to independently toggle power to each amplifier unit
+	\item Route output through shielded cable to oscilloscope
+\end{itemize}
+Each section of the PCB was therefore designed to address these issues. To indicate valid power delivery a simple LED indicator system was sufficient. Each amplifier had its own pin for power delivery and as such could be routed independently. A switch with three positions was used to control power delivery. When in neutral, power would be routed to both amplifiers A and B. When flipped left or right, the switch would direct power into only amplifier A or B respectively. The LED indicators were placed into voltage dividers. If enough voltage was being delivered on that line, the divider would pass voltage to light up the LED. \par
+When moving on to the layout the main concern was for space and signal integrity. By keeping the board as symmetrical as possible and including another ground plane, the design was ensured to be safe from interference. The four output channels were available as BNC headers as well and could be directly connected to a 4-channel oscilloscope. The switch and LED components provided the most challenges in layout as they required quite a few traces. The final layout was compact and clearly labeled to show testers what they needed to use. Power delivery was accomplished through probe clips to the power supply. The power supply is never changed or adjusted during the whole process, so the clips were not any issue when detatching and reattaching cards from the testing boards.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{amp_top_power_indicators.png}
+	\caption{Power indicator \& switching circuits for the -5V and +15V lines}
+\end{figure}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{amp_top_layout}
+	\caption{Finished layout of Top testing board}
+\end{figure}
