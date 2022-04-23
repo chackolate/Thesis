@@ -126,79 +126,86 @@ When moving on to the layout the main concern was for space and signal integrity
 
 \section{Results}
 \FloatBarrier
-In order to reflect DACIN values I created arrays of amplitude values to be used by the AWG. By sweeping across the desired input range we could quickly gather data on the amplifiers without having to manually adjust inputs. The system operates with discrete sets of analog outputs and as such the measurements would be easy to gather within a predetermined window of time. The oscilloscope scale was fully programmable and allowed us to increase or decrease the number of samples on the screen. Boundaries were set according to the table values and arrays were created to record inputs and outputs. To sweep across a boundary, I created a function that stepped 100 times through the given voltage range.
+In order to reflect DACIN values I created arrays of amplitude values to be used by the AWG. By sweeping across the desired input range we could quickly gather data on the amplifiers without having to manually adjust inputs. The system operates with discrete sets of analog outputs and as such the measurements would be easy to gather within a predetermined window of time. The oscilloscope scale was fully programmable and allowed us to increase or decrease the number of samples on the screen. Boundaries were set according to the range of DACIN values. Testers could set the number of iterations or steps to increase the precision of a test. The first iterations of the procedure only used 5 steps, but further testing and development of the software allowed as many steps as desired.
 \FloatBarrier
 \begin{lstlisting}
-	# DACIN = 9000
-	dacin_9000 = [1.41, 1.53]
-	x1 = []
-	y1_1, y2_1, y3_1, y4_1 = []
-	# DACIN = 13106
-	dacin_13106 = [2.07, 2.18]
-	x2 = []
-	y1_2, y2_2, y3_2, y4_2 = []
-	# DACIN = 19660
-	dacin_19660 = [3.04, 3.16]
-	x3 = []
-	y1_3, y2_3, y3_3, y4_3 = []
-	# DACIN = 26214
-	dacin_26214 = [4.02, 4.16]
-	x4 = []
-	y1_4, y2_4, y3_4, y4_4 = []
-	# DACIN = 32767
-	dacin_32767 = [5, 5.2]
-	x5 = []
-	y1_5, y2_5, y3_5, y4_5 = []
+	steps = 50
+	dacin_range = [1, 5.2]
+	x1 = [0] * steps
+	y1_1 = [0] * steps
+	y2_1 = [0] * steps
+	y3_1 = [0] * steps
+	y4_1 = [0] * steps
+	dacin_sweep([1, 5.2], steps, x1, y1_1, y2_1, y3_1, y4_1, awg, scope)
+	plt.plot(x1, y1_1, label="Channel 1")
+	plt.plot(x1, y2_1, label="Channel 2")
+	plt.plot(x1, y3_1, label="Channel 3")
+	plt.plot(x1, y4_1, label="Channel 4")
+	plt.xlabel("Input Amplitude")
+	plt.ylabel("Measured Voltage")
+	plt.title("Input Amplitude (V) vs Amplified Output (V)")
+	plt.legend()
+	# plt.show()
+	filename = num + ".png"
+	plt.savefig(filename)
+	plt.show()
 \end{lstlisting}
 
 \begin{lstlisting}
-	def dacin_sweep(dacin_bounds, x, y1, y2, y3, y4, awg, scope):
-    # turn off AWG
-    awg.set_on_off(1, 0)
-    awg.set_on_off(2, 0)
-    # set scope parameters & turn on displays
-    scope.display_channel("CHAN1", True)
-    scope.set_probe_ratio("CHAN1", 10)
-    scope.set_channel_scale("CHAN1", 5, False)
-    scope.set_channel_offset("CHAN1", -20.20)
+	def dacin_sweep(dacin_bounds, steps, x, y1, y2, y3, y4, awg, scope):
+	# turn off AWG
+	awg.set_on_off(1, 0)
+	awg.set_on_off(2, 0)
+	# set scope parameters & turn on displays
+	scope.display_channel("CHAN1", True)
+	scope.set_probe_ratio("CHAN1", 10)
+	scope.set_channel_scale("CHAN1", 10, False)
+	scope.set_channel_offset("CHAN1", -5)
 
-    scope.display_channel("CHAN2", True)
-    scope.set_probe_ratio("CHAN2", 10)
-    scope.set_channel_scale("CHAN2", 5, False)
-    scope.set_channel_offset("CHAN2", -36.40)
+	scope.display_channel("CHAN2", True)
+	scope.set_probe_ratio("CHAN2", 10)
+	scope.set_channel_scale("CHAN2", 10, False)
+	scope.set_channel_offset("CHAN2", -10)
 
-    scope.display_channel("CHAN3", True)
-    scope.set_probe_ratio("CHAN3", 10)
-    scope.set_channel_scale("CHAN3", 5, False)
-    scope.set_channel_offset("CHAN3", -24.70)
+	scope.display_channel("CHAN3", True)
+	scope.set_probe_ratio("CHAN3", 10)
+	scope.set_channel_scale("CHAN3", 10, False)
+	scope.set_channel_offset("CHAN3", -15)
 
-    scope.display_channel("CHAN4", True)
-    scope.set_probe_ratio("CHAN4", 10)
-    scope.set_channel_scale("CHAN4", 5, False)
-    scope.set_channel_offset("CHAN4", -15.0)
-    step = (dacin_bounds(1) - dacin_bounds(0)) / 100
-
-    for i in range(100):
-        x[i] = dacin_bounds(0) + step
-        awg.set_waveform(1, 1)
-        awg.set_frequency(1, 1000000)
-        awg.set_amplitude(1, x[i])
-        awg.set_offset(1, 0)
-        awg.set_phase(1, 0)
-        awg.set_on_off(1, 1)
-        chan1 = scope.get_waveform_samples("CHAN1", "NORMal")
-        chan2 = scope.get_waveform_samples("CHAN2", "NORMal")
-        chan3 = scope.get_waveform_samples("CHAN3", "NORMal")
-        chan4 = scope.get_waveform_samples("CHAN4", "NORMal")
-        y1[i] = max(chan1) - min(chan1)
-        print(y1[i])
-        y2[i] = max(chan2) - min(chan2)
-        print(y2[i])
-        y3[i] = max(chan3) - min(chan3)
-        print(y3[i])
-        y4[i] = max(chan4) - min(chan4)
-        print(y4[i])
-        step += step
+	scope.display_channel("CHAN4", True)
+	scope.set_probe_ratio("CHAN4", 10)
+	scope.set_channel_scale("CHAN4", 10, False)
+	scope.set_channel_offset("CHAN4", -20)
+	step = (dacin_bounds[1] - dacin_bounds[0]) / steps
+	nextval = dacin_bounds[0]
+	print(steps, "iterations with voltage step", step, "V")
+	with alive_bar(steps * 4, force_tty=True) as bar:
+			for i in range(steps):
+					x[i] = nextval
+					nextval = nextval + step
+					print(x[i], "V in")
+					awg.set_waveform(1, 1)
+					awg.set_frequency(1, 1000000)
+					awg.set_amplitude(1, x[i])
+					awg.set_offset(1, x[i] / 2)
+					awg.set_phase(1, 0)
+					awg.set_on_off(1, 1)
+					chan1 = scope.get_waveform_samples("CHAN1", "NORMal")
+					chan2 = scope.get_waveform_samples("CHAN2", "NORMal")
+					chan3 = scope.get_waveform_samples("CHAN3", "NORMal")
+					chan4 = scope.get_waveform_samples("CHAN4", "NORMal")
+					y1[i] = max(chan1) - min(chan1)
+					bar()
+					# print(y1[i])
+					y2[i] = max(chan2) - min(chan2)
+					bar()
+					# print(y2[i])
+					y3[i] = max(chan3) - min(chan3)
+					bar()
+					# print(y3[i])
+					y4[i] = max(chan4) - min(chan4)
+					bar()
+	# print(y4[i])
 \end{lstlisting}
 \FloatBarrier
 Using this simple script the equipment was automated to set parameters and measure, storing the data in arrays to be plotted with numpy later. \par
@@ -222,4 +229,58 @@ Initial data collection was only performed with five input points and five outpu
 \end{figure}
 The graphs make diagnosing and parsing issues significantly easier. For example, \ref{graphb} shows a card that has somewhat irregular response across channels 2 and 4. This can easily be pointed to as an issue with the signals' driver, amplifier B. Identified in this way, the cards can quickly be touched up and re-tested.
 \section{Further Testing}
-ADD NEW GRAPHS HERE
+Adding iterations yielded smooth results. By iterating through the voltage bounds with a fine grain the cards are thoroughly tested within all normal voltage levels they will be expected to encounter in the system. The goal of adding more iterations is to approach a continuous measurement that reliably reports the behavior of the circuit at any input. Adding iterations is a useful measurement tool, but comes with the caveat of making the program take much longer to run. The oscilloscope is slow to report back its channel measurements and cannot scale well with multiple outputs.
+\section{Testing Conclusions}
+The testing procedure was sufficiently automated and documented at this point. While the procedure certainly left room for improvement, fixing test procedures is an iterative process that requires experience with the existing procedures to improve. A major area of concern was the time taken for testing by increasing iterations. The time lapsed did not appear to scale linearly and adding more iterations would increase the time taken by far more than a simple scalar. To improve on this the oscilloscope must be replaced entirely by an analog or digital device that can perform fast measurements without extra issues. The analysis process is quite straightforward (Plot Vpp over increasing voltage) and can certainly be performed by a faster component. Alternatively, four oscilloscopes could be stacked to measure and report on each channel independently, although this could lead to issues and inconsistencies. The oscilloscope programming is entirely sequential and therefore not ideal for parallel measurements.\par
+This testing model led to multiple developments and discoveries that will be useful when creating and testing the next generation of amplifiers. Using the automation and PCB design strategies outlined here will allow us to implement features such as self-tuning gain and doubling the number of channels.
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{full_setup}
+	\caption{Full testing setup powered on}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{full_setup2}
+	\caption{Measurements in progress}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{output_measurement_10x}
+		\caption{10x iterations results on a good card}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.55\textwidth}
+		\includegraphics[width=\textwidth]{output_measurement_10x_settings}
+		\caption{Terminal output for test run}
+	\end{subfigure}
+	\caption{Data collected \& terminal output with 10 iterations}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{output_measurement_50x}
+	\caption{Results from 50x iterations}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{output_measurement_50x_settings}
+	\caption{Revised terminal output with 50 iterations}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{output_measurement_100x}
+	\caption{Output measurement with 100 iterations}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{output_measurement_100x_settings}
+	\caption{Terminal output after 100 iterations}
+\end{figure}
