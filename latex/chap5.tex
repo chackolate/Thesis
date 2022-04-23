@@ -11,7 +11,7 @@ In order to develop a better testing procedure for the current amplifier circuit
 	\centering
 \end{figure}
 \section{Understanding the Requirements}
-To properly test, validate and repair the amp cards, one requires an understanding of the card's place in the system. The card was responsible for passing digital-to-analog converted signals with 16-bit resolution at high speeds, and any issues would be directly visible in the projected video. The amp card received inputs from a 16-bit DAC with a 250 Megasamples per second output \cite{marks}. For digital information to be properly decoded as an analog signal, the converter must settle on values at an acceptable speed with negligible margin of error. As bit resolution increases, the margin of error should decrease.\par
+To properly test, validate and repair the amp cards, one requires an understanding of the card's place in the system. The card was responsible for passing digital-to-analog converted signals with 16-bit resolution at high speeds, and any issues would be directly visible in the projected video. The amp card received inputs from a 16-bit DAC with a 250 Megasamples per second output \cite{marks}. For digital information to be properly decoded as an analog signal, the converter must settle on values at an acceptable speed with negligible margin of error. As bit resolution increases, the margin of error should decrease. Output voltage from the DACs has been previously tested and documented giving us a base for what voltages needed to be swept for validation. \par
 
 \section{Settling Time}
 In any digital-to-analog system, designers must account for physical characteristics of electronics. Every DAC has a delay between input and response, known as Delay Time. The DAC then enters a Slewing period, where it tries to approach the target current or voltage output as fast as possible (current level in the case of our specific DAC). As the DAC approaches the target, slope decreases and the DAC oscillates between over- and under-estimates of the value until finally settling on a DC output. While an ideal DAC will settle on a precise output, most DACs will continue to oscillate between values if it is unable to discern their mean, especially in practical situations. The mathematical account of this phenomenon is called the Error Band. \par
@@ -26,9 +26,9 @@ The maximum acceptable error band is notated as
 \begin{math}
 	\frac{Vout}{2^n}
 \end{math}
-where Vout represents the maximum voltage output of the device and N represents the desired bit resolution. An 8-bit system with 4V max output, for example, has an error band of 
+where Vout represents the maximum voltage output of the device and N represents the desired bit resolution. An 8-bit system with 4V max output, for example, has an error band of
 \begin {math}
-	\frac{4V}{2^8}=0.0156V
+\frac{4V}{2^8}=0.0156V
 \end{math}
 The settling time is the time it takes for our analog system to be bounded by this error band. A smaller error band makes calculating the final value more difficult for the device.
 
@@ -47,5 +47,10 @@ The amp card was designed to encompass the first and second stages (DAC Buffer/C
 	\centering
 \end{figure}
 
-
-
+\section{Present Investigation and Review}
+Unfortunately, the original designer of the amplifier circuit did not design the testing procedure  mentioned later. As such, there was no original documentation on the goals and expected outputs for the amplifier. There were multiple choices made in the PCB for theoretical future revisions that never happened. Some egregious examples include unpopulated coaxial inputs as well as a number of surface mount components. These component pads were placed with the desire to potentially investigate later. These further tests were never carried out and ended up amounting to quite a bit of wasted space on one of the system's key component boards. Due to the lack of test documentation, design methodology and stagnant development since its creation, the amp cards were targeted as a major oversight in the system's hardware that required new test procedures and a new design. Fortunately, having to use the poorly implemented test procedure allowed me to become familiar with the process and realize exactly what needed to change going forward. These new test procedures and design reviews informed the development of the second generation of amp cards.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{amp_empty_components}
+	\caption{Unpopulated components on the amp card boxed in red. A great deal of space is wasted here}
+\end{figure}

@@ -68,77 +68,242 @@ VXI11 Python libraries are available and make VXI communication simple. Similarl
 \end{lstlisting}
 The string being pushed in the query function is a device-specific string that is outlined by the manufacturer \cite{rigol}. Using the listed commands and an ethernet connection, the VXI11 bus will automatically detect when a valid device is connected to the local network through Ethernet. The IP address of the device is specified upon initialization and needs to be checked before running tests.
 
-\section{Input Stage}
-The input stage of the amp testing procedure was the first to be targeted. Directing input to the amp card should be a simple task for the user. Since all four channels are used in parallel on the system, they can be connected to a unified signal source and displayed together on the oscilloscope for data collection. Using a mix of hardware and software support I developed an input procedure for the new test.
-\subsection{Function Generation}
-To implement a Python layer for the function generator I opted to use a FeelTech FY6900 Arbitrary Waveform Generator.
-\begin{figure}[!htb]
-	\centering
-	\includegraphics*[]{awg}
-	\caption{FeelTech FY6900}
-\end{figure}
-This was a relatively cheap function generator that fulfilled the tasks we needed to accomplish. With up to 60MHz sine wave output, this device was more than enough to test the capabilities of the amplifiers. The DAC input the amps were designed to process were at frequencies far below this. For the first versions of the test I opted to use the original function generator settings until more could be determined about the input parameters. The code was simple and based on the previously listed libraries \& protocols:
-\begin{lstlisting}
-	awg.set_on_off(1, 0)
-	awg.set_on_off(2, 0)
-
-	awg.set_waveform(1, 1)
-	awg.set_frequency(1, 1000000)
-	awg.set_amplitude(1, x[i])
-	awg.set_offset(1, 0.318)
-	awg.set_phase(1, 0)
-
-	# Turn channel 1 on
-	awg.set_on_off(1, 1)
-\end{lstlisting}
-For the automated test to save time, it was set to loop four times to collect plot data from the oscilloscope for all four amplifier output channels. In order for this automatic switching to work, hardware had to be designed to accept the signal and distribute it accordingly.
-\subsection{Bottom (Input) PCB}
-Major flaws in the original test setup included the lack of any shielded cable to transfer the input signal and the tester having to manually clip the input to each amp channel. Although we were not necessarily testing for strict signal integrity, it is better practice to use standard connectors for input rather than probe clips. Since the FeelTech generator used a BNC connector it was easiest to match this on the input card. BNC connectors are shielded coaxial connectors capable of reliably passing signals under 4GHz and less than 500V \cite{bncbook}. \par
-Separating the amplifier's input lines was a useless step that only served to complicate the process. To solve this I had to examine the amp's PCB layout to find the relevant pins. The DAC inputs were differential pairs identified within the layout below:
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=\textwidth]{amp_input_pins}
-	\caption{Differential input pins on the Amp PCB}
-\end{figure}
-The input side of the board was fairly simple to draw and lay out. One of the amp's purposes was to turn the DAC's differential output into a single-ended output. To accomplish this, the amp card terminated the N-terminals of all incoming DAC signals through a 49 ohm resistor.
-\begin{figure}[!htb]
-	\centering
-	\includegraphics{amp_n_p}
-	\caption{Terminating resistor for the N-terminal of the DAC output.}
-\end{figure}
-Grounding the differential input was an acceptable decision for the test setup. Only the P-lines of the signal would be processed by the circuit at all, so they were routed together and joined to a single BNC input in the test board.
-The layout followed shortly and included a ground plane to maximize signal integrity. With such a limited number of relevant pins on the input side of the amp card, designing the test board was not an issue. \par
-\subsection{Input Conclusion}
-This section of the test setup resulted in a far simpler procedure. Having to only connect one output through a stable connection and clearly labeled board eliminated all possible confusion for testers.
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=\textwidth]{amp_bottom_layout.png}
-	\caption{Input Test board layout}
-\end{figure}
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=\textwidth]{amp_bottom_schematic.png}
-	\caption{Input Test board schematic for joining P-inputs and grounding N-inputs}
-\end{figure}
-
-\section{Output Stage}
-The output of the amp card required the testers to be able to view all output channels at once as well as collect and plot the oscilloscope's data. This once again required a mix of software and hardware tools to accomplish.
-\subsection{Top (Output) PCB}
-Before any data could be routed to the oscilloscope we needed to develop a control system for the top connector of the amp card. This connector housed a number of vital pins including power rail input and amplifier output. In the system, this connector would be attached to the interface board and transport signals through the ribbon cables. To appropriately test the functionality of all amp cards, users had to be able to fulfill a number of requirements:
+\section{PCB Design Considerations}
+While only a limited amount of hardware was required to drive the setup, design considerations had to be made to ensure there were no issues with single integrity or connector placement. The main goals of the test PCBs were to:
 \begin{itemize}
-	\item Ensure power was being properly delivered to both amplifiers
-	\item Have the ability to independently toggle power to each amplifier unit
-	\item Route output through shielded cable to oscilloscope
+	\item Provide users with a clear start and end point for signals
+	\item Clearly label all relevant components
+	\item Minimize manual steps to reduce error
+	\item Provide instructions directly on the boards as well as official documentation
 \end{itemize}
-Each section of the PCB was therefore designed to address these issues. To indicate valid power delivery a simple LED indicator system was sufficient. Each amplifier had its own pin for power delivery and as such could be routed independently. A switch with three positions was used to control power delivery. When in neutral, power would be routed to both amplifiers A and B. When flipped left or right, the switch would direct power into only amplifier A or B respectively. The LED indicators were placed into voltage dividers. If enough voltage was being delivered on that line, the divider would pass voltage to light up the LED. \par
-When moving on to the layout the main concern was for space and signal integrity. By keeping the board as symmetrical as possible and including another ground plane, the design was ensured to be safe from interference. The four output channels were available as BNC headers as well and could be directly connected to a 4-channel oscilloscope. The switch and LED components provided the most challenges in layout as they required quite a few traces. The final layout was compact and clearly labeled to show testers what they needed to use. Power delivery was accomplished through probe clips to the power supply. The power supply is never changed or adjusted during the whole process, so the clips were not any issue when detatching and reattaching cards from the testing boards.
-\begin{figure}[!htb]
+To accomplish this a thorough re-examination of the available equipment and possible solutions was required. To make the most of the previously mentioned measurement tools, simple shielded connectors were chosen as the entry and exit points for all signals. While these were not strictly necessary, standardizing connectors and overcompensating for signal integrity create stable foundations for future testing procedures. \par
+Visual aids such as text and indicator displays were also necessary. It is impractical for a user to physically ensure power is being delivered when an active component could always sense voltage on its line. With new instructions, procedure and documentation, the visual aids were added purely as concessions for accessibility.\par
+The final factor in the PCB design was proper electrical structure. The amplifier architecture provided separate ground and power lines for each amplifier component which housed four amplifiers each. In the system architecture, these ground planes and power lines were provided by the interface board (signaloutput) and DAC cards (input). Each of these ends unified the grounds. To mimic this architecture ground planes were added on both sides of the test setup to eliminate any risk of cross-talk or inaccurate results. The new testing hardware platform was built from the ground up as a representation of what the amps would be expected to do in the system.
+\section{Emulating DAC input}
+DAC output signals had previously been investigated with the purposes of limiting variations between analog response of individual channels. A long bout of experimentation yielded a list of voltage outputs from each DAC at different colors. As mentioned before, each ``color" band represents a range of values to represent desired brighness or intensity. These voltage levels provided a starting point for the voltage sweeps necessary to fully validate the amp cards. Results are recorded below:
+
+\begin{table}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{amp_top_power_indicators.png}
-	\caption{Power indicator \& switching circuits for the -5V and +15V lines}
-\end{figure}
-\begin{figure}[!htb]
+	\caption{DACIN Value at Target Pixel Voltage}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Voltage Level (V)} & \textbf{DACIN Value (Color Counts)} \\
+		\hline
+		5                          & 32767                               \\ \hline
+		4                          & 26214                               \\ \hline
+		3                          & 19660                               \\ \hline
+		2                          & 13106                               \\ \hline
+		1                          & 9000                                \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{amp_top_layout}
-	\caption{Finished layout of Top testing board}
-\end{figure}
+	\caption{Voltage at DACIN=32767}
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		\textbf{Signal} & \textbf{Channel} & \textbf{Min Voltage (V)} & \textbf{Max Voltage (V)} \\
+		\hline
+		vinn0           & 0                & 0.198                    & 5.1                      \\
+		\hline
+		vinp0           & 1                & 0.200                    & 5.16                     \\
+		\hline
+		vinn1           & 2                & 0.080                    & 5.1                      \\
+		\hline
+		vinp1           & 3                & 0.139                    & 5.12                     \\
+		\hline
+		vinn2           & 4                & 0.170                    & 5.11                     \\
+		\hline
+		vinp2           & 5                & 0.142                    & 5.08                     \\
+		\hline
+		vinn3           & 6                & 0.162                    & 5.09                     \\
+		\hline
+		vinp3           & 7                & 0.140                    & 5.07                     \\
+		\hline
+		vinn4           & 8                & 0.137                    & 5.06                     \\
+		\hline
+		vinp4           & 9                & 0.206                    & 5.1                      \\
+		\hline
+		vinn5           & 10               & 0.187                    & 5.08                     \\
+		\hline
+		vinp5           & 11               & 0.140                    & 5.07                     \\
+		\hline
+		vinn6           & 12               & 0.033                    & 5.01                     \\
+		\hline
+		vinp6           & 13               & 0.063                    & 5.02                     \\
+		\hline
+		vinn7           & 14               & 0.067                    & 5.01                     \\
+		\hline
+		vinp7           & 15               & 0.087                    & 5                        \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\caption{Voltage at DACIN=26214}
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		\textbf{Signal} & \textbf{Channel} & \textbf{Min Voltage (V)} & \textbf{Max Voltage (V)} \\
+		\hline
+		vinn0           & 0                & 0.181                    & 4.16                     \\
+		\hline
+		vinp0           & 1                & 0.185                    & 4.21                     \\
+		\hline
+		vinn1           & 2                & 0.066                    & 4.1                      \\
+		\hline
+		vinp1           & 3                & 0.120                    & 4.17                     \\
+		\hline
+		vinn2           & 4                & 0.160                    & 4.15                     \\
+		\hline
+		vinp2           & 5                & 0.130                    & 4.11                     \\
+		\hline
+		vinn3           & 6                & 0.153                    & 4.12                     \\
+		\hline
+		vinp3           & 7                & 0.133                    & 4.1                      \\
+		\hline
+		vinn4           & 8                & 0.120                    & 4.1                      \\
+		\hline
+		vinp4           & 9                & 0.196                    & 4.16                     \\
+		\hline
+		vinn5           & 10               & 0.181                    & 4.11                     \\
+		\hline
+		vinp5           & 11               & 0.130                    & 4.1                      \\
+		\hline
+		vinn6           & 12               & 0.040                    & 4.03                     \\
+		\hline
+		vinp6           & 13               & 0.060                    & 4.04                     \\
+		\hline
+		vinn7           & 14               & 0.060                    & 4.03                     \\
+		\hline
+		vinp7           & 15               & 0.070                    & 4.02                     \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\caption{Voltage at DACIN=19660}
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		\textbf{Signal} & \textbf{Channel} & \textbf{Min Voltage (V)} & \textbf{Max Voltage (V)} \\
+		\hline
+		vinn0           & 0                & 0.180                    & 3.16                     \\
+		\hline
+		vinp0           & 1                & 0.186                    & 3.19                     \\
+		\hline
+		vinn1           & 2                & 0.065                    & 3.11                     \\
+		\hline
+		vinp1           & 3                & 0.122                    & 3.15                     \\
+		\hline
+		vinn2           & 4                & 0.160                    & 3.12                     \\
+		\hline
+		vinp2           & 5                & 0.126                    & 3.11                     \\
+		\hline
+		vinn3           & 6                & 0.159                    & 3.14                     \\
+		\hline
+		vinp3           & 7                & 0.129                    & 3.11                     \\
+		\hline
+		vinn4           & 8                & 0.120                    & 3.11                     \\
+		\hline
+		vinp4           & 9                & 0.187                    & 3.15                     \\
+		\hline
+		vinn5           & 10               & 0.180                    & 3.14                     \\
+		\hline
+		vinp5           & 11               & 0.133                    & 3.11                     \\
+		\hline
+		vinn6           & 12               & 0.039                    & 3.04                     \\
+		\hline
+		vinp6           & 13               & 0.060                    & 3.06                     \\
+		\hline
+		vinn7           & 14               & 0.060                    & 3.05                     \\
+		\hline
+		vinp7           & 15               & 0.075                    & 3.04                     \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\caption{Voltage at DACIN=13106}
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		\textbf{Signal} & \textbf{Channel} & \textbf{Min Voltage (V)} & \textbf{Max Voltage (V)} \\
+		\hline
+		vinn0           & 0                & 0.184                    & 2.18                     \\
+		\hline
+		vinp0           & 1                & 0.188                    & 2.2                      \\
+		\hline
+		vinn1           & 2                & 0.065                    & 2.11                     \\
+		\hline
+		vinp1           & 3                & 0.122                    & 2.15                     \\
+		\hline
+		vinn2           & 4                & 0.159                    & 2.16                     \\
+		\hline
+		vinp2           & 5                & 0.126                    & 2.14                     \\
+		\hline
+		vinn3           & 6                & 0.157                    & 2.15                     \\
+		\hline
+		vinp3           & 7                & 0.128                    & 2.15                     \\
+		\hline
+		vinn4           & 8                & 0.120                    & 2.12                     \\
+		\hline
+		vinp4           & 9                & 0.191                    & 2.18                     \\
+		\hline
+		vinn5           & 10               & 0.180                    & 2.16                     \\
+		\hline
+		vinp5           & 11               & 0.135                    & 2.13                     \\
+		\hline
+		vinn6           & 12               & 0.039                    & 2.06                     \\
+		\hline
+		vinp6           & 13               & 0.060                    & 2.07                     \\
+		\hline
+		vinn7           & 14               & 0.060                    & 2.07                     \\
+		\hline
+		vinp7           & 15               & 0.066                    & 2.07                     \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\caption{Voltage at DACIN=9000}
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		\textbf{Signal} & \textbf{Channel} & \textbf{Min Voltage (V)} & \textbf{Max Voltage (V)} \\
+		\hline
+		vinn0           & 0                & 0.175                    & 1.53                     \\
+		\hline
+		vinp0           & 1                & 0.175                    & 1.54                     \\
+		\hline
+		vinn1           & 2                & 0.046                    & 1.44                     \\
+		\hline
+		vinp1           & 3                & 0.100                    & 1.49                     \\
+		\hline
+		vinn2           & 4                & 0.135                    & 1.5                      \\
+		\hline
+		vinp2           & 5                & 0.103                    & 1.48                     \\
+		\hline
+		vinn3           & 6                & 0.135                    & 1.5                      \\
+		\hline
+		vinp3           & 7                & 0.105                    & 1.48                     \\
+		\hline
+		vinn4           & 8                & 0.096                    & 1.47                     \\
+		\hline
+		vinp4           & 9                & 0.185                    & 1.53                     \\
+		\hline
+		vinn5           & 10               & 0.165                    & 1.51                     \\
+		\hline
+		vinp5           & 11               & 0.110                    & 1.47                     \\
+		\hline
+		vinn6           & 12               & 0.013                    & 1.4                      \\
+		\hline
+		vinp6           & 13               & 0.036                    & 1.41                     \\
+		\hline
+		vinn7           & 14               & 0.036                    & 1.41                     \\
+		\hline
+		vinp7           & 15               & 0.049                    & 1.41                     \\
+		\hline
+	\end{tabular}
+\end{table}
+
