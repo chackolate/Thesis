@@ -22,10 +22,4 @@ Sub-frames are marked by the PDP firmware with packets denoting their x and y co
 	\centering
 \end{figure}
 PDP can be used in two modes. The method of splitting and refreshing subframes is known as "streaming mode". Users may also opt to use it in a typical display mode where the entire frame is sent at a fixed refresh rate. This is known as "backwards compatibility mode". While there is nothing innovative about this mode, it is necessary to maintain compatibility with existing scene generation technology.\par
-\begin{figure}[!htb]
-	\includegraphics[width=10cm]{pdp_backwards_compatibility}
-	\centering
-	\caption{Packet organization in each mode \cite{chris}}
-	\centering
-\end{figure}
 PDP was previously described as being "physical layer agnostic" \cite{pdp_ieee}. The protocol can theoretically be implemented over any physical medium such as DVI or ethernet. The initial implementation utilized HDMI to maintain compatiblity with existing technology, but a future revision is moving the physical medium to SFP+. Improvements to the CSE hardware will be briefly discussed in a later section.
